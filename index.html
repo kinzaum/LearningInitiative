@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Unity Projects</title>
+<title>Kinzaum Learning Initiative</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -24,14 +24,18 @@
   header {
     grid-area: header;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* stack items vertically */
     align-items: center;
-    margin-bottom: 0;
+    margin-bottom: 20px;
   }
 
   header h1 {
     font-size: 2.5em;
     margin: 0;
+  }
+
+  header p {
+    margin: 5px 0 0 0;
   }
 
   .ad-top-right {
@@ -41,9 +45,7 @@
     width: 250px;
     text-align: center;
     font-size: 0.9em;
-    position: sticky;
-    top: 20px;
-    height: fit-content;
+    margin-bottom: 10px; /* space between ad and title */
   }
 
   .ad-left {
@@ -79,7 +81,7 @@
   .grid {
     grid-area: main;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
     gap: 20px;
   }
 
@@ -174,6 +176,12 @@
     z-index: 1001;
   }
 
+  @media (max-width: 1200px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
   @media (max-width: 900px) {
     body {
       grid-template-areas: 
@@ -191,14 +199,26 @@
       width: 100%;
       position: static;
     }
+
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
+
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
 </style>
 </head>
 <body>
 
 <header>
-  <h1>My Unity Projects</h1>
-  <div class="ad-top-right">Top Right Ad</div>
+  <div class="ad-top-right">Top Ad</div>
+  <h1>>Kinzaum Learning Initiative</h1>
+  <p>Click a project to play it!</p>
 </header>
 
 <div class="ad-left">Left Ad</div>
@@ -206,42 +226,54 @@
 <div class="ad-bottom">Bottom Ad</div>
 
 <div class="grid">
-  <!-- 9 game cards -->
+  <!-- 12 Game Cards -->
   <div class="card" onclick="openModal('Game1/index.html')">
-    <img src="Game1.png" alt="Game 1">
+    <img src="globe.png" alt="Game 1">
     <div class="overlay"><p>Game 1: Interact with a 3D globe and explore countries.</p></div>
   </div>
   <div class="card" onclick="openModal('Game2/index.html')">
-    <img src="Game2.png" alt="Game 2">
+    <img src="game2.png" alt="Game 2">
     <div class="overlay"><p>Game 2: Solve puzzles and challenges.</p></div>
   </div>
   <div class="card" onclick="openModal('Game3/index.html')">
-    <img src="Game3.png" alt="Game 3">
+    <img src="game3.png" alt="Game 3">
     <div class="overlay"><p>Game 3: Explore a fantasy world.</p></div>
   </div>
   <div class="card" onclick="openModal('Game4/index.html')">
-    <img src="Game4.png" alt="Game 4">
+    <img src="game4.png" alt="Game 4">
     <div class="overlay"><p>Game 4: Test your reaction speed.</p></div>
   </div>
   <div class="card" onclick="openModal('Game5/index.html')">
-    <img src="Game5.png" alt="Game 5">
+    <img src="game5.png" alt="Game 5">
     <div class="overlay"><p>Game 5: Strategic puzzle game.</p></div>
   </div>
   <div class="card" onclick="openModal('Game6/index.html')">
-    <img src="Game6.png" alt="Game 6">
+    <img src="game6.png" alt="Game 6">
     <div class="overlay"><p>Game 6: Navigate mazes and obstacles.</p></div>
   </div>
   <div class="card" onclick="openModal('Game7/index.html')">
-    <img src="Game7.png" alt="Game 7">
+    <img src="game7.png" alt="Game 7">
     <div class="overlay"><p>Game 7: Interactive simulations.</p></div>
   </div>
   <div class="card" onclick="openModal('Game8/index.html')">
-    <img src="Game8.png" alt="Game 8">
+    <img src="game8.png" alt="Game 8">
     <div class="overlay"><p>Game 8: Mini-game collection.</p></div>
   </div>
   <div class="card" onclick="openModal('Game9/index.html')">
-    <img src="Game9.png" alt="Game 9">
+    <img src="game9.png" alt="Game 9">
     <div class="overlay"><p>Game 9: Explore, play, and learn.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game10/index.html')">
+    <img src="game10.png" alt="Game 10">
+    <div class="overlay"><p>Game 10: Adventure and quests.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game11/index.html')">
+    <img src="game11.png" alt="Game 11">
+    <div class="overlay"><p>Game 11: Test your skills.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game12/index.html')">
+    <img src="game12.png" alt="Game 12">
+    <div class="overlay"><p>Game 12: Fun and interactive challenges.</p></div>
   </div>
 </div>
 
