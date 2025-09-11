@@ -1,164 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Unity Projects</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Unity Projects</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    display: grid;
+    grid-template-areas: 
+      "header header header"
+      "ad-left main ad-right"
+      "ad-bottom ad-bottom ad-bottom";
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    min-height: 100vh;
+  }
+
+  header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  header h1 {
+    font-size: 2.5em;
+    margin: 0;
+  }
+
+  .ad-top-right {
+    background: #eee;
+    padding: 10px;
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    font-size: 0.9em;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+  }
+
+  .ad-left {
+    grid-area: ad-left;
+    background: #eee;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+  }
+
+  .ad-right {
+    grid-area: ad-right;
+    background: #eee;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+  }
+
+  .ad-bottom {
+    grid-area: ad-bottom;
+    background: #eee;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .grid {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* square ratio */
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+  }
+
+  .card img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover img {
+    transform: scale(1.05);
+  }
+
+  .card .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-radius: 12px;
+    transform: scale(0.95);
+  }
+
+  .card:hover .overlay {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Modal styling */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+  }
+
+  .modal-content {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    margin: 2% auto;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .modal iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  @media (max-width: 900px) {
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      margin: 0;
-      padding: 20px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    header h1 {
-      font-size: 2.5em;
-      margin: 0;
-    }
-
-    .grid {
-      display: grid;
+      grid-template-areas: 
+        "header"
+        "ad-top-right"
+        "main"
+        "ad-left"
+        "ad-right"
+        "ad-bottom";
       grid-template-columns: 1fr;
-      gap: 20px;
+      grid-template-rows: auto;
     }
 
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Horizontal layout */
-    .card.horizontal {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding: 10px;
-    }
-
-    .card.horizontal img {
-      width: 150px;  /* square thumbnail */
-      height: 150px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-right: 20px;
-    }
-
-    .card.horizontal .card-content {
-      flex: 1;
-    }
-
-    .card-content h3 {
-      margin: 0 0 10px;
-    }
-
-    .card-content p {
-      font-size: 0.9em;
-      color: #666;
-    }
-
-    .play-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 14px;
-      background: #007bff;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.2s ease;
-      cursor: pointer;
-    }
-
-    .play-btn:hover {
-      background: #0056b3;
-    }
-
-    /* Modal styling */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-    }
-
-    .modal-content {
-      position: relative;
-      width: 90%;
-      height: 90%;
-      margin: 2% auto;
-      background: #000;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .modal iframe {
+    .ad-top-right, .ad-left, .ad-right, .ad-bottom {
       width: 100%;
-      height: 100%;
-      border: none;
+      position: static;
     }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 28px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>My Unity Projects</h1>
-    <p>Click a project to play it!</p>
-  </header>
 
-  <div class="grid">
-    <!-- Game 1 -->
-    <div class="card horizontal">
-      <img src="globe.png" alt="Game 1 Thumbnail" />
-      <div class="card-content">
-        <h3>Game 1</h3>
-        <p>A Unity WebGL project running locally on GitHub Pages. Click Play to open it in a modal window and start interacting with the globe.</p>
-        <span class="play-btn" onclick="openModal('Game1/index.html')">Play</span>
-      </div>
-    </div>
+<header>
+  <h1>My Unity Projects</h1>
+  <div class="ad-top-right">Top Right Ad</div>
+</header>
+
+<div class="ad-left">Left Ad</div>
+<div class="ad-right">Right Ad</div>
+<div class="ad-bottom">Bottom Ad</div>
+
+<div class="grid">
+  <!-- 9 game cards -->
+  <div class="card" onclick="openModal('Game1/index.html')">
+    <img src="Game1.png" alt="Game 1">
+    <div class="overlay"><p>Game 1: Interact with a 3D globe and explore countries.</p></div>
   </div>
-
-  <!-- Modal -->
-  <div id="gameModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <iframe id="gameFrame" src=""></iframe>
-    </div>
+  <div class="card" onclick="openModal('Game2/index.html')">
+    <img src="Game2.png" alt="Game 2">
+    <div class="overlay"><p>Game 2: Solve puzzles and challenges.</p></div>
   </div>
+  <div class="card" onclick="openModal('Game3/index.html')">
+    <img src="Game3.png" alt="Game 3">
+    <div class="overlay"><p>Game 3: Explore a fantasy world.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game4/index.html')">
+    <img src="Game4.png" alt="Game 4">
+    <div class="overlay"><p>Game 4: Test your reaction speed.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game5/index.html')">
+    <img src="Game5.png" alt="Game 5">
+    <div class="overlay"><p>Game 5: Strategic puzzle game.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game6/index.html')">
+    <img src="Game6.png" alt="Game 6">
+    <div class="overlay"><p>Game 6: Navigate mazes and obstacles.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game7/index.html')">
+    <img src="Game7.png" alt="Game 7">
+    <div class="overlay"><p>Game 7: Interactive simulations.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game8/index.html')">
+    <img src="Game8.png" alt="Game 8">
+    <div class="overlay"><p>Game 8: Mini-game collection.</p></div>
+  </div>
+  <div class="card" onclick="openModal('Game9/index.html')">
+    <img src="Game9.png" alt="Game 9">
+    <div class="overlay"><p>Game 9: Explore, play, and learn.</p></div>
+  </div>
+</div>
 
-  <script>
-    function openModal(url) {
-      document.getElementById('gameFrame').src = url;
-      document.getElementById('gameModal').style.display = 'block';
-    }
-    function closeModal() {
-      document.getElementById('gameFrame').src = "";
-      document.getElementById('gameModal').style.display = 'none';
-    }
-  </script>
+<!-- Modal -->
+<div id="gameModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <iframe id="gameFrame" src=""></iframe>
+  </div>
+</div>
+
+<script>
+function openModal(url) {
+  document.getElementById('gameFrame').src = url;
+  document.getElementById('gameModal').style.display = 'block';
+}
+function closeModal() {
+  document.getElementById('gameFrame').src = "";
+  document.getElementById('gameModal').style.display = 'none';
+}
+</script>
+
 </body>
 </html>
