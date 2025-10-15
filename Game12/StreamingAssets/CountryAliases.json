@@ -1,0 +1,22 @@
+﻿[
+  { "country": "BRAZIL", "aliases": ["Brazil", "Brésil", "Brasilien"] },
+  { "country": "JAPAN", "aliases": ["Japan", "Japon", "Japan"] },
+  { "country": "FRANCE", "aliases": ["France", "France", "Frankreich"] },
+  { "country": "GERMANY", "aliases": ["Germany", "Allemagne", "Deutschland"] },
+  { "country": "SPAIN", "aliases": ["Spain", "Espagne", "Spanien"] },
+  { "country": "ITALY", "aliases": ["Italy", "Italie", "Italien"] },
+  { "country": "UNITED_KINGDOM", "aliases": ["United Kingdom", "Royaume-Uni", "Vereinigtes Königreich"] },
+  { "country": "CANADA", "aliases": ["Canada", "Canada", "Kanada"] },
+  { "country": "MEXICO", "aliases": ["Mexico", "Mexique", "Mexiko"] },
+  { "country": "AUSTRALIA", "aliases": ["Australia", "Australie", "Australien"] },
+  { "country": "CHINA", "aliases": ["China", "Chine", "China"] },
+  { "country": "INDIA", "aliases": ["India", "Inde", "Indien"] },
+  { "country": "RUSSIA", "aliases": ["Russia", "Russie", "Russland"] },
+  { "country": "SOUTH_AFRICA", "aliases": ["South Africa", "Afrique du Sud", "Südafrika"] },
+  { "country": "EGYPT", "aliases": ["Egypt", "Égypte", "Ägypten"] },
+  { "country": "ARGENTINA", "aliases": ["Argentina", "Argentine", "Argentinien"] },
+  { "country": "SWEDEN", "aliases": ["Sweden", "Suède", "Schweden"] },
+  { "country": "NORWAY", "aliases": ["Norway", "Norvège", "Norwegen"] },
+  { "country": "SOUTH_KOREA", "aliases": ["South Korea", "Corée du Sud", "Südkorea"] },
+  { "country": "TURKEY", "aliases": ["Turkey", "Turquie", "Türkei"] }
+]
