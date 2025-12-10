@@ -211,51 +211,61 @@
 <div class="ad-bottom">Bottom Ad</div>
 
 <div class="grid">
-  <!-- 12 Game Cards -->
   <div class="card" onclick="openModal('Game1/index.html')">
     <img src="game1.png" alt="Earth Globe">
     <div class="overlay"><p>Globe 3D: Learn and test your knowledge in this amazing app.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game2/index.html')">
     <img src="game2.png" alt="Past Tense Defense">
     <div class="overlay"><p>Past Tense Defense: Save the city, one verb at the time!!!.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game3/index.html')">
     <img src="game3.png" alt="Grammar Runner">
     <div class="overlay"><p>Grammar Runner: Improve your pronunciantion or get smashed trying!!!</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game4/index.html')">
     <img src="game4.png" alt="Game 4">
     <div class="overlay"><p>Game 4: Test your reaction speed.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game5/index.html')">
     <img src="game5.png" alt="Game 5">
     <div class="overlay"><p>Game 5: Strategic puzzle game.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game6/index.html')">
     <img src="game6.png" alt="Game 6">
     <div class="overlay"><p>Game 6: Navigate mazes and obstacles.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game7/index.html')">
     <img src="game7.png" alt="Game 7">
     <div class="overlay"><p>Game 7: Interactive simulations.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game8/index.html')">
     <img src="game8.png" alt="Game 8">
     <div class="overlay"><p>Game 8: Mini-game collection.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game9/index.html')">
     <img src="game9.png" alt="Game 9">
     <div class="overlay"><p>Game 9: Explore, play, and learn.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game10/index.html')">
     <img src="game10.png" alt="Game 10">
     <div class="overlay"><p>Game 10: Adventure and quests.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game11/index.html')">
     <img src="game11.png" alt="Game 11">
     <div class="overlay"><p>Game 11: Test your skills.</p></div>
   </div>
+
   <div class="card" onclick="openModal('Game12/index.html')">
     <img src="game12.png" alt="Game 12">
     <div class="overlay"><p>Game 12: Fun and interactive gameplay.</p></div>
@@ -271,10 +281,24 @@
 </div>
 
 <script>
-function openModal(url) {
-  document.getElementById('gameFrame').src = url;
+// Detect mobile
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod|Windows Phone|webOS|BlackBerry/i.test(navigator.userAgent);
+}
+
+// Open modal and load correct version
+function openModal(baseUrl) {
+  let finalUrl = baseUrl;
+
+  // Replace "Game" with "Gamephone" for mobile builds
+  if (isMobileDevice()) {
+    finalUrl = baseUrl.replace("Game", "Gamephone");
+  }
+
+  document.getElementById('gameFrame').src = finalUrl;
   document.getElementById('gameModal').style.display = 'block';
 }
+
 function closeModal() {
   document.getElementById('gameFrame').src = "";
   document.getElementById('gameModal').style.display = 'none';
